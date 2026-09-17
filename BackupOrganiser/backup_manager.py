@@ -23,4 +23,8 @@ class BackupManager:
             backup_location
         )
 
-        collection_object.backups.append(backup)
+        collection_object.backups.append({
+            "name": backup_name,
+            "date": backup_date,
+            "location": backup_location
+        })

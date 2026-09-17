@@ -14,6 +14,34 @@ class CollectionManager:
         # Stores all DataCollection objects
         self.collections = []
 
+    # Returns a JSON representation of all collections.    
+    def overview_json(self):
+        return {
+            "collections": [
+            collection.name
+            for collection in self.collections
+        ]
+    }
+
+    # Returns a JSON representation of all collections with detailed information.
+    def detailed_overview_json(self):
+        return {
+                "collections": [
+                collection.full_json()
+                for collection in self.collections
+            ]
+    }
+
+    # Returns a JSON representation of one collection with detailed information.
+    def info_json(self, collection_name):
+        collection = self.get(collection_name)
+
+        if collection:
+            return collection.full_json()
+
+        return {"error": "Collection not found"}
+
+
     def add_collection(
         self,
         name,
