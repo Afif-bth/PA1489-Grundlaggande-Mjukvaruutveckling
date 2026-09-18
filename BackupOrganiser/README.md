@@ -35,6 +35,328 @@ The application follows the CRUD pattern:
 - Delete
 
 ---
+# TA Presentation Notes
+
+## Start application
+
+Run:
+
+```bash
+docker compose up
+```
+
+Open:
+
+```text
+http://localhost:5000
+```
+
+---
+
+## Show Add Collection
+
+Endpoint:
+
+```text
+POST /api/Collection
+```
+
+Source code:
+
+```text
+restinterface.py
+```
+
+Function:
+
+```python
+def add_collection():
+```
+
+Uses:
+
+```python
+collection_manager.add_collection(...)
+```
+
+---
+
+## Show Overview
+
+Endpoint:
+
+```text
+GET /api/Overview
+```
+
+Source code:
+
+```text
+restinterface.py
+```
+
+Uses:
+
+```python
+collection_manager.overview_json()
+```
+
+Implementation:
+
+```text
+collection_manager.py
+```
+
+Method:
+
+```python
+def overview_json():
+```
+
+---
+
+## Show Detailed List
+
+Endpoint:
+
+```text
+GET /api/List
+```
+
+Source code:
+
+```text
+restinterface.py
+```
+
+Uses:
+
+```python
+collection_manager.detailed_overview_json()
+```
+
+Implementation:
+
+```text
+collection_manager.py
+```
+
+---
+
+## Show Info
+
+Endpoint:
+
+```text
+GET /api/Info?name=Photos
+```
+
+Source code:
+
+```text
+restinterface.py
+```
+
+Uses:
+
+```python
+collection_manager.info_json()
+```
+
+Implementation:
+
+```text
+collection_manager.py
+```
+
+---
+
+## Show Search
+
+Endpoint:
+
+```text
+GET /api/Search?name=Pho
+```
+
+Source code:
+
+```text
+restinterface.py
+```
+
+Implementation:
+
+```python
+def search()
+```
+
+File:
+
+```text
+collection_manager.py
+```
+
+---
+
+## Show Add Backup
+
+Endpoint:
+
+```text
+POST /api/Backup
+```
+
+Source code:
+
+```text
+restinterface.py
+```
+
+Uses:
+
+```python
+backup_manager.add_backup()
+```
+
+Implementation:
+
+```text
+backup_manager.py
+```
+
+---
+
+## Show Edit Collection
+
+Endpoint:
+
+```text
+POST /api/Edit
+```
+
+Implementation:
+
+```python
+def edit()
+```
+
+File:
+
+```text
+collection_manager.py
+```
+
+---
+
+## Show Delete Collection
+
+Endpoint:
+
+```text
+DELETE /api/Delete
+```
+
+Implementation:
+
+```python
+def delete()
+```
+
+File:
+
+```text
+collection_manager.py
+```
+
+---
+
+## Show Remove Backup
+
+Endpoint:
+
+```text
+POST /api/Unbackup
+```
+
+Implementation:
+
+```python
+def unbackup()
+```
+
+File:
+
+```text
+backup_manager.py
+```
+
+---
+
+## Class Overview
+
+### DataCollection
+
+File:
+
+```text
+data_collection.py
+```
+
+Stores collection information.
+
+---
+
+### BackupEntry
+
+File:
+
+```text
+backup_entry.py
+```
+
+Stores backup information.
+
+---
+
+### CollectionManager
+
+File:
+
+```text
+collection_manager.py
+```
+
+Manages collections.
+
+---
+
+### BackupManager
+
+File:
+
+```text
+backup_manager.py
+```
+
+Manages backups.
+
+---
+
+### RestInterface
+
+File:
+
+```text
+restinterface.py
+```
+
+Provides the Flask REST API.
+
+
+
+
+---
 
 ## Implemented Functionality
 
