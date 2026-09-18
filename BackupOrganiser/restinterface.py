@@ -1,5 +1,4 @@
-from flask import Flask, request
-
+from flask import Flask, request, render_template
 from collection_manager import CollectionManager
 from backup_manager import BackupManager
 
@@ -21,7 +20,7 @@ collection_manager.add_collection(
 
 @app.route("/")
 def home():
-    return "BackupOrganiser Running"
+    return render_template("index.html")
 
 
 # GET /api/Overview
@@ -82,5 +81,57 @@ def add_backup():
 
     return {"message": "Backup added"}
 
+
+@app.route("/api/Search")
+def search():
+
+    name = request.args.get("name")
+
+    return {
+        "collections": collection_manager.search(name)
+    }
+
+
+@app.route("/api/Edit", methods=["POST"])
+def edit():
+
+    data = request.get_json()
+
+    success = collection_manager.edit(
+        data["name"],
+        data["modification_date"],
+        data["still_updated"]
+    )
+
+    return {"success": success}
+
+@app.route("/api/Delete", methods=["DELETE"])
+def delete():
+
+    name = request.args.get("name")
+
+    success = collection_manager.delete(name)
+
+    return {"success": success}
+
+
+@app.route("/api/Unbackup", methods=["POST"])
+def unbackup():
+
+    data = request.get_json()
+
+    collection = collection_manager.get(data["name"])
+
+    if collection is None:
+        return {"error": "Collection not found"}
+
+    success = backup_manager.unbackup(
+        collection,
+        data["backupname"]
+    )
+
+    return {"success": success}
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

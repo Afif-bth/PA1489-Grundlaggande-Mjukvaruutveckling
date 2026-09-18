@@ -122,3 +122,61 @@ class CollectionManager:
             collection.modification_date,
             collection.still_updated
         ]
+
+    def search(self, search_text):
+        """
+        Returns collections whose names contain search_text.
+        """
+
+        result = []
+
+        for collection in self.collections:
+            if search_text.lower() in collection.name.lower():
+                result.append(collection.full_json())
+
+        return result
+
+    def edit(self, collection_name, modification_date, still_updated):
+        """
+        Updates a collection.
+        """
+
+        collection = self.get(collection_name)
+
+        if collection is None:
+            return False
+
+        collection.modification_date = modification_date
+        collection.still_updated = still_updated
+
+        return True
+
+    def edit(self, collection_name, modification_date, still_updated):
+        """
+        Updates a collection.
+        """
+
+        collection = self.get(collection_name)
+
+        if collection is None:
+            return False
+
+        collection.modification_date = modification_date
+        collection.still_updated = still_updated
+
+        return True
+
+
+    def delete(self, collection_name):
+        """
+        Deletes a collection by name.
+        """
+
+        collection = self.get(collection_name)
+
+        if collection is None:
+            return False
+
+        self.collections.remove(collection)
+
+        return True

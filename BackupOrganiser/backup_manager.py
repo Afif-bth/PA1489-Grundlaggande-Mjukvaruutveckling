@@ -28,3 +28,16 @@ class BackupManager:
             "date": backup_date,
             "location": backup_location
         })
+
+    def unbackup(self, collection_object, backup_name):
+            """
+            Removes a backup from a collection.
+            """
+
+            for backup in collection_object.backups:
+
+                if backup["name"] == backup_name:
+                    collection_object.backups.remove(backup)
+                    return True
+
+            return False
