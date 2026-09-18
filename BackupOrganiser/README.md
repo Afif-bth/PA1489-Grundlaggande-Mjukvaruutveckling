@@ -233,7 +233,263 @@ returns information about all collections.
 Docker makes the application run consistently on different computers without additional setup.
 
 ---
+# Questions for TA
 
+## 1. What is the purpose of BackupOrganiser?
+
+BackupOrganiser is a CRUD application used to manage data collections and their backups.
+
+A collection contains:
+
+- name
+- description
+- creation date
+- modification date
+- still updated
+- backups
+
+A backup contains:
+
+- name
+- date
+- location
+
+---
+
+## 2. What does DataCollection do?
+
+File:
+
+```text
+data_collection.py
+```
+
+Represents one collection.
+
+Stores:
+
+- name
+- description
+- creation_date
+- modification_date
+- still_updated
+- backups
+
+---
+
+## 3. What does BackupEntry do?
+
+File:
+
+```text
+backup_entry.py
+```
+
+Represents one backup.
+
+Stores:
+
+- name
+- date
+- location
+
+---
+
+## 4. What does CollectionManager do?
+
+File:
+
+```text
+collection_manager.py
+```
+
+Manages all collections.
+
+Important methods:
+
+```python
+add_collection()
+get()
+overview()
+detailed_overview()
+info()
+search()
+edit()
+delete()
+```
+
+---
+
+## 5. What does BackupManager do?
+
+File:
+
+```text
+backup_manager.py
+```
+
+Manages backups.
+
+Important methods:
+
+```python
+add_backup()
+unbackup()
+```
+
+---
+
+## 6. What does restinterface.py do?
+
+File:
+
+```text
+restinterface.py
+```
+
+Creates the Flask web application and REST API endpoints.
+
+Examples:
+
+```text
+/api/Overview
+/api/List
+/api/Info
+/api/Search
+/api/Collection
+/api/Backup
+/api/Edit
+/api/Delete
+/api/Unbackup
+```
+
+---
+
+## 7. What is Flask?
+
+Flask is a Python web framework used to build web applications and REST APIs.
+
+---
+
+## 8. What is an API endpoint?
+
+An endpoint is a URL that provides access to application functionality.
+
+Example:
+
+```text
+/api/Overview
+```
+
+Returns information about all collections.
+
+---
+
+## 9. What is Docker?
+
+Docker is used to package and run the application in a container.
+
+This ensures the application runs the same way on different computers.
+
+Run:
+
+```bash
+docker compose up
+```
+
+---
+
+## 10. How is Add Collection implemented?
+
+1. User sends a POST request to:
+
+```text
+/api/Collection
+```
+
+2. Flask receives the JSON data.
+
+3. CollectionManager.add_collection() creates a new DataCollection object.
+
+4. The collection is added to the collections list.
+
+---
+
+## 11. How is Add Backup implemented?
+
+1. User sends a POST request to:
+
+```text
+/api/Backup
+```
+
+2. Flask finds the collection using:
+
+```python
+collection_manager.get()
+```
+
+3. BackupManager.add_backup() creates a backup.
+
+4. The backup is added to:
+
+```python
+collection.backups
+```
+
+---
+
+## 12. How is Search implemented?
+
+File:
+
+```text
+collection_manager.py
+```
+
+Method:
+
+```python
+search()
+```
+
+The method loops through all collections and checks if the search text exists in the collection name.
+
+---
+
+## 13. Why did you use classes?
+
+To separate responsibilities:
+
+- DataCollection → collection data
+- BackupEntry → backup data
+- CollectionManager → collection operations
+- BackupManager → backup operations
+
+This makes the code easier to maintain and understand.
+
+---
+
+## 14. How do you start the application?
+
+Local:
+
+```bash
+python3 restinterface.py
+```
+
+Docker:
+
+```bash
+docker compose up
+```
+
+Open:
+
+```text
+http://localhost:5000
+```
+---
 ## Author
 
 Afif Mohammed
