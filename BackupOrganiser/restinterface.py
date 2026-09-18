@@ -81,7 +81,7 @@ def add_backup():
 
     return {"message": "Backup added"}
 
-
+# Search collections by name
 @app.route("/api/Search")
 def search():
 
@@ -91,7 +91,7 @@ def search():
         "collections": collection_manager.search(name)
     }
 
-
+# Update collection information
 @app.route("/api/Edit", methods=["POST"])
 def edit():
 
@@ -108,7 +108,7 @@ def edit():
 @app.route("/api/Delete", methods=["DELETE"])
 def delete():
 
-    name = request.args.get("name")
+    name = request.args.get("name", "")
 
     success = collection_manager.delete(name)
 

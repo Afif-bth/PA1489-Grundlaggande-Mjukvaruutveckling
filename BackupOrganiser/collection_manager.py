@@ -124,9 +124,9 @@ class CollectionManager:
         ]
 
     def search(self, search_text):
-        """
-        Returns collections whose names contain search_text.
-        """
+
+        if search_text is None:
+            return []
 
         result = []
 
@@ -151,20 +151,7 @@ class CollectionManager:
 
         return True
 
-    def edit(self, collection_name, modification_date, still_updated):
-        """
-        Updates a collection.
-        """
-
-        collection = self.get(collection_name)
-
-        if collection is None:
-            return False
-
-        collection.modification_date = modification_date
-        collection.still_updated = still_updated
-
-        return True
+    
 
 
     def delete(self, collection_name):
