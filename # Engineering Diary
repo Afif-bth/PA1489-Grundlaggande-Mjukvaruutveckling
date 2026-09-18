@@ -1,0 +1,167 @@
+# Engineering Diary
+
+## 2026-08-20
+
+### Configuration Management
+
+Today I created my Git repository and connected it to GitHub.
+
+Commands used:
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git push
+```
+
+What worked well:
+
+- GitHub connection was successful.
+
+What was difficult:
+
+- Understanding branches and remote repositories.
+
+How I solved it:
+
+- Practiced using git status and git log.
+
+---
+
+## 2026-08-27
+
+### Testing and Debugging
+
+I tested my Python classes.
+
+Commands used:
+
+```bash
+python3 main.py
+python3 -m py_compile collection_manager.py
+```
+
+What worked well:
+
+- Syntax errors were easy to identify.
+
+What was difficult:
+
+- Indentation errors in Python.
+
+How I solved it:
+
+- Used VS Code warnings and py_compile.
+
+---
+
+## 2026-09-01
+
+### Implementation and Documentation
+
+I implemented the DataCollection class and CollectionManager.
+
+What worked well:
+
+- The object-oriented design was easy to extend.
+
+What was difficult:
+
+- Deciding where methods should be placed.
+
+How I solved it:
+
+- Separated responsibilities between classes.
+
+---
+
+## 2026-09-05
+
+### Container Development
+
+I created a Dockerfile and docker-compose.yml.
+
+Commands used:
+
+```bash
+docker compose build
+docker compose up
+```
+
+What worked well:
+
+- The application started successfully inside Docker.
+
+What was difficult:
+
+- Understanding how ports are mapped.
+
+How I solved it:
+
+- Tested different configurations and read the Docker output.
+
+---
+
+## 2026-09-10
+
+### Implementation and Documentation
+
+I implemented search, edit, delete and unbackup functionality.
+
+What worked well:
+
+- CRUD functionality became complete.
+
+What was difficult:
+
+- Making sure the correct collection was selected.
+
+How I solved it:
+
+- Used helper methods such as get().
+
+---
+
+## 2026-09-15
+
+### Final Testing
+
+I tested all API endpoints.
+
+Examples:
+
+```text
+/api/Overview
+/api/List
+/api/Info
+/api/Search
+```
+
+What worked well:
+
+- All endpoints returned expected results.
+
+What was difficult:
+
+- Keeping track of JSON structures.
+
+How I solved it:
+
+- Added comments and docstrings.
+
+---
+
+## Final Reflection
+
+During this course I learned:
+
+- Git and GitHub
+- Docker and containers
+- Flask and REST APIs
+- Object-oriented programming
+- Debugging Python applications
+
+The most difficult part was Docker and understanding how the different classes interact.
+
+The most useful thing I learned was how to structure a project using multiple classes and files.
