@@ -7,6 +7,8 @@
 
     <h1>Backup Organiser</h1>
 
+    <h2>GET Endpoints</h2>
+
     <button onclick="window.location='/api/Overview'">
         Overview
     </button>
@@ -19,6 +21,126 @@
         Info
     </button>
 
-    <button onclick="window.location='/api/Search?name=Pho'">Search</button>
+    <button onclick="window.location='/api/Search?name=Pho'">
+        Search
+    </button>
+
+    <hr>
+
+    <h2>POST / DELETE Endpoints</h2>
+
+    <p>
+        These endpoints cannot be accessed directly through the browser
+        because they require POST or DELETE requests with JSON data.
+        Therefore JavaScript is used to send the requests.
+    </p>
+
+    <button onclick="addCollection()">
+        Add Collection
+    </button>
+
+    <button onclick="addBackup()">
+        Add Backup
+    </button>
+
+    <button onclick="editCollection()">
+        Edit Collection
+    </button>
+
+    <button onclick="deleteCollection()">
+        Delete Collection
+    </button>
+
+    <button onclick="unbackupCollection()">
+        Remove Backup
+    </button>
+
+<script>
+
+function addCollection() {
+
+    fetch('/api/Collection', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: 'Games',
+            description: 'Game backups',
+            creation_date: '2026-09-18',
+            modification_date: '2026-09-18',
+            still_updated: true
+        })
+    })
+    .then(response => response.json())
+    .then(data => alert(JSON.stringify(data)));
+}
+
+
+function addBackup() {
+
+    fetch('/api/Backup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: 'Games',
+            backupname: 'Backup1',
+            date: '2026-09-18',
+            location: 'External Drive'
+        })
+    })
+    .then(response => response.json())
+    .then(data => alert(JSON.stringify(data)));
+}
+
+
+function editCollection() {
+
+    fetch('/api/Edit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: 'Games',
+            modification_date: '2026-09-19',
+            still_updated: false
+        })
+    })
+    .then(response => response.json())
+    .then(data => alert(JSON.stringify(data)));
+}
+
+
+function deleteCollection() {
+
+    fetch('/api/Delete?name=Games', {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => alert(JSON.stringify(data)));
+}
+
+
+function unbackupCollection() {
+
+    fetch('/api/Unbackup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: 'Games',
+            backupname: 'Backup1'
+        })
+    })
+    .then(response => response.json())
+    .then(data => alert(JSON.stringify(data)));
+}
+
+</script>
+
 </body>
 </html>

@@ -2,7 +2,7 @@ class DataCollection:
     """
     Represents one data collection and its backups.
     """
-
+    # Initializes a new data collection with the given name, description, creation date, modification date, and still_updated status.
     def __init__(
         self,
         name,

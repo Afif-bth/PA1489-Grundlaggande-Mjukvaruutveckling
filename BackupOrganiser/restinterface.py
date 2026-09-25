@@ -1,10 +1,10 @@
 from flask import Flask, request, render_template
 from collection_manager import CollectionManager
 from backup_manager import BackupManager
-
+# restinterface.py is the main entry point for the REST interface of the Backup Organiser application. It sets up the Flask application, defines the API endpoints, and handles requests related to data collections and backups.
 app = Flask(__name__)
 
-# Managers
+# Managers , we create instances of CollectionManager and BackupManager to handle the operations related to data collections and backups, respectively.
 collection_manager = CollectionManager()
 backup_manager = BackupManager()
 
@@ -17,25 +17,25 @@ collection_manager.add_collection(
     True
 )
 
-
+# Home endpoint
 @app.route("/")
 def home():
     return render_template("index.html")
 
 
-# GET /api/Overview
+# Overview endpoint
 @app.route("/api/Overview")
 def overview():
     return collection_manager.overview_json()
 
 
-# GET /api/List
+# List endpoint
 @app.route("/api/List")
 def list_collections():
     return collection_manager.detailed_overview_json()
 
 
-# GET /api/Info?name=Photos
+# Info endpoint
 @app.route("/api/Info")
 def info():
     name = request.args.get("name")
@@ -44,7 +44,7 @@ def info():
 
 
 # -----
-# POST /api/Collection
+# Add Collection endpoint
 @app.route("/api/Collection", methods=["POST"])
 def add_collection():
 
@@ -61,7 +61,7 @@ def add_collection():
     return {"message": "Collection added"}
 
 
-# POST /api/Backup
+# Add Backup endpoint
 @app.route("/api/Backup", methods=["POST"])
 def add_backup():
 
@@ -81,7 +81,7 @@ def add_backup():
 
     return {"message": "Backup added"}
 
-# Search collections by name
+# Search endpoint
 @app.route("/api/Search")
 def search():
 
@@ -91,7 +91,7 @@ def search():
         "collections": collection_manager.search(name)
     }
 
-# Update collection information
+# Edit endpoint
 @app.route("/api/Edit", methods=["POST"])
 def edit():
 
@@ -105,6 +105,7 @@ def edit():
 
     return {"success": success}
 
+# Delete endpoint
 @app.route("/api/Delete", methods=["DELETE"])
 def delete():
 
@@ -114,7 +115,7 @@ def delete():
 
     return {"success": success}
 
-
+# Unbackup endpoint
 @app.route("/api/Unbackup", methods=["POST"])
 def unbackup():
 
@@ -135,3 +136,13 @@ def unbackup():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
+
+    # running the application : 
+    # source .venv/bin/activate
+    #   python3 restinterface.py
+    #   http://localhost:5000
+    #   docker compose build
+    #   docker compose up
+
+
+

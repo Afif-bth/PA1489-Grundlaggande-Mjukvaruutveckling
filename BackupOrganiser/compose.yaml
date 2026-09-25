@@ -3,3 +3,12 @@ services:
     build: .
     ports:
       - "5000:5000"
+
+
+# docker compose build
+
+# docker compose up
+# docker compose down
+# python3 restinterface.py
+
+# http://localhost:5000
